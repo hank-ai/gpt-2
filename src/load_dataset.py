@@ -31,15 +31,19 @@ def load_dataset(enc, path, combine):
             # Plain text
             with open(path, 'r') as fp:
                 raw_text += fp.read()
+            print("\nRead {:,} chars from {} ...".format(len(raw_text), path))
             if len(raw_text) >= combine:
+                print(' -> Encoding now since len>combine ({:,}>{:,}) ...'.format(len(raw_text), combine))
                 tokens = np.stack(enc.encode(raw_text))
                 token_chunks.append(tokens)
                 raw_text = ''
             else:
                 raw_text += '<|endoftext|>'
     if raw_text:
+        print('All files read. Encoding now since raw_text isn\'t empty ...')
         tokens = np.stack(enc.encode(raw_text))
         token_chunks.append(tokens)
+    print('Done loading tokens ({}) ...'.format(len(token_chunks)))
     return token_chunks
 
 
