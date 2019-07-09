@@ -79,7 +79,7 @@ class Sampler(object):
         ), "Dataset files are too small to sample {} tokens at a time".format(
             length)
         while True:
-            index = self.rs.randint(0, self.total_size - length - 1)
+            index = self.rs.randint(0, self.total_size - length - 1, dtype='uint64')
             i = binary_search(lambda j: self.boundaries[j] > index, 0,
                               len(self.boundaries) - 1) - 1
             if self.boundaries[i + 1] > index + length:
