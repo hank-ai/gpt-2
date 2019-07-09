@@ -83,5 +83,5 @@ class Sampler(object):
             i = binary_search(lambda j: self.boundaries[j] > index, 0,
                               len(self.boundaries) - 1) - 1
             if self.boundaries[i + 1] > index + length:
-                within_chunk = index - self.boundaries[i]
+                within_chunk = int(index - self.boundaries[i])
                 return self.chunks[i][within_chunk:within_chunk + length]
