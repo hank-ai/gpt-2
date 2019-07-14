@@ -4,3 +4,6 @@ models/
 checkpoint
 samples
 src/traindata.npz
+/src/traindata
+/src/traindata.npz.FULLNOTEEVENTSTABLE
+*.npz
